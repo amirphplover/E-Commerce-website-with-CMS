@@ -1,0 +1,252 @@
+ *{
+    font-family: 'iran' !important;
+
+   }
+
+
+  @font-face {
+  font-family: 'iran';
+  src: url('../fonts/iran.eot?#') format('embedded-opentype'),
+       url('../fonts/iran.woff') format('woff'),
+       url('../fonts/iran.ttf')  format('truetype'),
+       url('../fonts/iran.svg') format('svg');
+   }
+
+
+body{
+  background:#f4f4f4 !important;
+}
+
+/* Navbar */
+
+.navbar{
+  background-color: #555;
+
+}
+
+
+.navbar li > a, .navbar-brand {
+  color: #ecf0f1;
+  font-weight: 700;
+  margin: 0 10px;
+}
+
+.navbar li > a:hover{
+  color: #D7493A;
+}
+
+.navbar li a{
+
+  font-size: 14px;
+}
+
+#footer{
+text-align: center;
+margin-top: 30px;
+background-color: #555;
+padding: 10px;
+color: #fff;
+}
+#footer p{
+  margin-top: 15px;
+}
+
+.main-color-bg{
+  background-color: #D7493A !important;
+
+}
+
+.title small{
+
+  font-size: 16px;
+  color: #f4f4f4;
+
+}
+
+.boxshadow{
+  box-shadow: 5px 10px 8px #cccc;
+}
+
+header{
+background-color:#D7493A;
+color: #fff; 
+padding: 20px 0;
+}
+
+.dropdown-toggle{
+
+  color: #fff;
+}
+
+#addproduct{
+  direction: rtl;
+}
+
+#adduser{
+  direction: rtl;
+}
+
+
+.modal-body > .form-group label{
+  float: right;
+}
+
+#breadcrumb{
+  direction: rtl;
+  font-size: 13px;
+  font-weight: bold;
+  color: #99A3A4;
+  margin: 10px 0 0 0;
+
+
+}
+
+.navbar-toggler span{
+font-style: #fff !important;
+outline-color: #fff;
+
+  
+}
+
+.breadcrump{
+  background:#cccccc !important;
+  color:#333333;
+}
+
+
+.panel{
+  padding: 0 0 30px 0;
+  background-color: #fff;
+  width: 100%;
+  border: 1px solid #EAEDED;
+
+
+}
+
+.panel >.panel-heading{
+
+  border-radius: 5px;
+  padding: 4px 0;
+
+}
+.panel .panel-heading >h6{
+  
+  color: #fff;
+  padding: 4px 15px 0 0;
+  font-weight: 400;
+  text-align: center;
+}
+
+.panel-body{
+  background-color: #fff;
+    padding: 17px;
+}
+
+.panel-body .well{
+
+  background: #F2F3F4;
+  padding: 25px;
+  border-radius: 5px;
+  border: 1px solid #EAEDED;
+}
+
+
+.list-group  a{
+  text-decoration: none;
+  color: #555;
+  font-size: 15px;
+}
+
+.list-group  a:hover{
+    text-decoration: none;
+  color: #555;
+}
+
+.list-group .main-color-bg{
+  border-style: none; 
+}
+
+.badge{
+  background-color: #555;
+  color: #fff;
+  border-radius: 50% !important;
+  padding: 6px !important;
+}
+
+.panel-heading .panel-title{
+  font-weight: 400;
+  font-size: 15px;
+  color: #fff;
+}
+
+/*admin*/
+#login{
+  direction: rtl;
+}
+
+
+.loginbox{
+  margin: auto!important;
+  min-width: 200px;
+  max-width: 400px;
+  padding: 40px;
+  width: 50%;
+  direction: rtl;
+}
+
+.loginbox label{
+  float: right;
+}
+
+.btn-adminlogin{
+  color: #fff!important;
+}
+
+.shadowBox{
+
+  box-shadow: 1px 3px 3px #ccc;
+}
+
+/*
+on mobile  screen*/
+@media only screen and (max-width: 600px) {
+
+  .navbar ul{
+    align-items: center;
+    }
+
+  .navbar  ul li{
+    padding: 10px 0;
+
+    }
+
+
+  .title h3{
+   display: none;
+  }
+
+  .panel-body .well{
+
+    margin-bottom: 10px;
+
+  }
+
+  .navbar-toggler span{
+font-style: #fff !important;
+outline-color: #fff;
+
+  
+ }
+
+  .loginbox{
+  margin: auto!important;
+  width: 100%;
+ }
+
+
+.dashList{
+  display: none;
+}
+
+
+}
