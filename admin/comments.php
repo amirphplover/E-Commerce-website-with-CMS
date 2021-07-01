@@ -9,13 +9,28 @@
 <body>
   <!-- php includes -->
   <?php include 'includes/autoloader.inc.php';
-   $users = new users;?>
+   $comments = new comment;
+   $users = new users;
+   $products = new product;
+
+   ?>
   <!-- php includes -->
 
-  <!--delete users-->
-    <?php if(isset($_GET["deluser"])){
-     $id = $_GET["deluser"];
-     $res = $users->delete($id);
+  <!--delete comments-->
+  <?php 
+
+    if(isset($_GET["delcom"])){
+     $id = $_GET["delcom"];
+     $res = $comments->delete($id);
+  }
+
+  if(isset($_GET['accept'])){
+    $id = $_GET["accept"];
+    $res = $comments->commentValidation($id,1);
+  }elseif(isset($_GET['unAccept'])){
+
+    $id = $_GET["unAccept"];
+    $res = $comments->commentValidation($id,0);
   }
 
   ?>
@@ -47,12 +62,12 @@
        <!-- Website Overview -->
       <div  class="col-md-9 pb-3"> 
                 
-          <?php if (isset($users->infomsg)) {?>
-          <div class="alert alert-success text-center"><?php echo $users->infomsg; ?></div>
+          <?php if (isset($comments->infomsg)) {?>
+          <div class="alert alert-success text-center"><?php echo $comments->infomsg; ?></div>
           <?php }?>
 
-         <?php if (isset($users->errormsg)) {?>
-          <div class="alert alert-danger text-center"><?php echo $users->errormsg; ?></div>
+         <?php if (isset($comments->errormsg)) {?>
+          <div class="alert alert-danger text-center"><?php echo $comments->errormsg; ?></div>
           <?php }?>
            
                     <!-- tabel of users -->
@@ -71,23 +86,28 @@
                       </tr>
                       <!-- select all users  -->
                       <?php 
-                      $row=$users->getAllUser();
+                      $row=$comments->selectAllComments();
                        foreach ($row  as $rows) {
                       ?> 
 
                       <tr>
                         <td>
                                                                      
-                        <a onclick="return confirm('آیا از حذف کاربر مطمعنید ?');" type="button" href=?deluser=<?php echo $rows['id'];?> class="btn btn-danger mt-1 btn-sm">حذف</a>
-
-                        <a onclick="return confirm('آیا از حذف کاربر مطمعنید ?');" type="button" href=?deluser=<?php echo $rows['id'];?> class="btn btn-danger mt-1 btn-sm">تایید</a>
-
+                        <a onclick="return confirm('آیا از حذف کاربر مطمعنید ?');" type="button" href=?delcom=<?php echo $rows['id'];?> class="btn btn-danger mt-1 btn-sm">حذف</a>
+                        <?php if($rows['status']==0) { ?>
+                        <a onclick="return confirm(' کامنت را تایید میکنید?');" type="button" href=?accept=<?php echo $rows['id'];?> class="btn btn-danger mt-1 btn-sm">تایید</a>
+                        <?php }else{ ?>
+                          <a onclick="return confirm('نظر را رد میکنید ?');" type="button" href=?unAccept=<?php echo $rows['id'];?> class="btn btn-warning mt-1 btn-sm">رد صلاحیت</a>
+                        <?php } ?>
                         </td>
-                                         
-                        <td> <?php echo $rows["date"]; ?></td>
-                        <td> <?php echo $rows["email"];?></td>
-                        <td> <?php echo $rows["email"];?></td>
-                        <td> <?php echo $rows["username"];?></td>
+                        <?php $user = $users->usercomment($rows['user_id']);?>
+                        <?php $product = $products->getProductById($rows['product_id']); 
+                              
+                        ?>
+                        <td> <?php echo $rows["time"]; ?></td>
+                        <td> <?php echo $rows["text"];?></td>
+                        <td> <img height="80px" src=<?php echo product::$picture;?>></td>
+                        <td> <?php echo $users->fname;?></td>
                       </tr>
                       <?php }?>
                     </table>
@@ -107,6 +127,7 @@
     </div>
   </div>
 </section>
+
 
 
 

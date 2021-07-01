@@ -12,6 +12,7 @@ class users{
 	public $email;
 	public $username;
 	public $password;
+	public $userImg;
 	
 
 	public $query;
@@ -260,6 +261,26 @@ class users{
 
 		
 
+	}
+
+
+	public function usercomment($id){
+
+		$res = $this->getUserById($id);
+
+		foreach($res as $row){
+
+			// $this->fname = $row['fname'];
+			// $this->lname = $row['lname'];
+			// $this->username = $row['username'];
+			$this->setvalue($row['fname'],$row['lname'],$row['username'],$row['password'],$row['email']);
+
+
+			if(isset($row['image'])){
+
+				$this->userImg = $row['image'];
+			}
+		}
 	}
 
 

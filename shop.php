@@ -50,7 +50,7 @@
 							<!--product card -->
 					          <div class="card mt-3">
 					            <div class="product-1 align-items-center text-center">
-					             <a href="product-details.php?productID=<?= $row['id'];?>"> <img width="100%" src=<?php echo 'admin/'.$row["picture"];?>></a>
+					             <a href="product-details.php?productID=<?= $row['id'];?>" target="blank"> <img width="100%" src=<?php echo 'admin/'.$row["picture"];?>></a>
 					              <h5><?php echo $row['product_name'] ?></h5>
 
 

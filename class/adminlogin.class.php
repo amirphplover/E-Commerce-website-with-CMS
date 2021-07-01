@@ -61,7 +61,8 @@
 					Session::set("username",$row['username']);
 					Session::set("fname",$row['fname']);
 				    $this->infomsg .= "اطلاعات درست است";
-				    header("location:index.php");
+				    
+				    	header("location:index.php");
 				    }else{
 
 			            return $this->errormsg .= "مشخصات وارد شده اشتباه است<br>";

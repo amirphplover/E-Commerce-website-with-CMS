@@ -6,12 +6,24 @@
 </head>
 <?php include 'includes/navbar.inc.php';?>
 <?php include 'includes/autoloader.inc.php';?>
-<?php $product  = new product;?>
-<?php $category = new category;?>
+<?php $product  = new product;  ?>
+<?php $category = new category; ?>
+<?php $comment  = new comment; ?>
+<?php $users    = new users; ?>
 
 
 
+<?php
 
+if(isset($_POST['btn-comment']) AND $_SERVER['REQUEST_METHOD'] =='POST'){
+
+	return $comment->insertComment($_POST['productID'],$_POST['userID'],$_POST['comment-txt']);
+
+}
+
+
+
+?>
 
 
 
@@ -74,30 +86,33 @@
 		</div>
 	</section>
 
-
+<?php $res = $comment->CommentAccepted($_GET['productID']); ?>
 	<section class="comments">
 		<div class="container">
 		    <div class="row ">
+
+		    	<?php foreach($res as $row) { ?>
+		    		<?php $res = $users->usercomment($row['user_id']) ?>
 		        <div class="col-12 ">
 		            <div class="card card-white post ">
 		                <div class="post-heading d-flex  flex-row-reverse">
 		                    <div class="float-left image">
-		                        <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+		                        <img src='<?= $users->userImg; ?>' class=" ml-2 img-circle avatar" alt="user profile image">
 		                    </div>
 		                    <div class="float-left meta">
 		                        <div class="title h5">
-		                            <a href="#"><b>Ryan Haywood</b></a>
+		                            <a href="#"><b><?= $users->username;  ?></b></a>
 		                            made a post.
 		                        </div>
-		                        <h6 class="text-muted time">1 minute ago</h6>
+		                        <h6 class="text-muted time"><?= $row['time']; ?></h6>
 		                    </div>
 		                </div> 
 		                <div class="post-description d-flex flex-row-reverse"> 
-		                    <p>Bootdey is a gallery of free snippets resources templates and utilities for bootstrap css hmtl js framework. Codes for developers and web designers</p>
+		                    <p><?= $row['text']; ?></p>
 
 		                </div>
 		            </div>
-		        </div>
+		        </div> <?php } ?>
 		        
 		    </div>
 		</div>
@@ -106,23 +121,26 @@
 
 
 <?php if(Session::get('userLogin')==true) {?>
+
+
 	<section class="comments">
 		<div class="container">
 			<div class="row">
 				<div class="col-12 comment-form mt-5">
 					<p class="text-dark ">نظرتو بنویس برامون!</p>
-					<form method="post" action="">
-						<input type="hidden" name="productID" value=<?php echo $_GET['productID'];?>>
-						<input type="hidden" name="userID" value=<?php Session::get('userID_login');?>>
-	                    <div class="form-group">
-	                        <textarea class="form-control p-3" cols="" rows="6" placeholder="نظرت رو بگو ..."></textarea> 
+							<form method="post" action="">
+									<input type="hidden" name="productID" value=<?php echo $_GET['productID'];?>>
+									<input type="hidden" name="userID" value=<?php Session::get('userID_login');?>>
+	                 <div class="form-group">
+	                        <textarea class="form-control p-3" name="comment-txt" cols="" rows="6" placeholder="نظرت رو بگو ..."></textarea> 
 	                        <button class="btn mt-4" type="submit" name="btn-comment">ارسال</button>
-	                    </div>
-                	</form>
+	                 </div>
+               </form>
 				</div>
 			</div>
+
 		</div>
-	</section>
+	</section><a name="comment"></a>
 <?php }?>
 
   <?php include'includes/footer.inc.php';?>

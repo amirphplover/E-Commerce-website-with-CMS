@@ -7,8 +7,8 @@
 	class product{
 
 
-		public  $db;
-		public  $query;
+	public  $db;
+	public  $query;
     public  $info;
     public  $error;
 
